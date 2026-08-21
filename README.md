@@ -14,24 +14,27 @@ Eu projeto, desenvolvo e opero a plataforma de ponta a ponta: desde conversas co
 
 O projeto começou durante minha transição profissional de **Infraestrutura de TI para Desenvolvimento de Software** e evoluiu de uma necessidade real para uma plataforma comercial utilizada em ambiente empresarial.
 
-Hoje, a SWNexa possui um Portal central e produtos independentes que compartilham identidade, controle de acesso e billing, mas mantêm seus próprios ciclos de desenvolvimento e deploy.
+Hoje, a SWNexa é composta por um **Portal central** e produtos independentes que compartilham identidade, controle de acesso e billing, mas mantêm seus próprios domínios, aplicações, dados e ciclos de deploy.
+
+A arquitetura foi pensada para permitir que novos produtos sejam incorporados ao ecossistema conforme novas necessidades surgirem, sem transformar a plataforma em uma aplicação única e fortemente acoplada.
 
 ---
 
 ## Visão geral
 
-|                                 |                                                                |
-| ------------------------------- | -------------------------------------------------------------- |
-|  **4 produtos**               | Fluxio, Produtiv, Extoq e Conciliar                            |
-|  **1 Portal central**         | Identidade, acesso, usuários, organizações e assinaturas       |
-|  **Frontends independentes** | Cada produto possui sua própria aplicação                      |
-|  **Backends independentes**   | Cada produto possui sua própria API                            |
-|  **Bancos independentes**    | Separação de dados por produto dentro do MongoDB               |
-|  **Deploy independente**      | Cada aplicação pode evoluir e ser publicada separadamente      |
-|  **SSO centralizado**         | O usuário não precisa realizar login novamente em cada produto |
-|  **Billing integrado**        | Trial, assinaturas individuais e plano completo                |
-|  **Cloud**                    | Vercel, AWS Lightsail, Render, MongoDB, S3 e Cloudflare        |
-|  **Uso real**                 | Plataforma comercial operando em ambiente empresarial          |
+|                             |                                                          |
+| --------------------------- | -------------------------------------------------------- |
+| **4 produtos atualmente**   | Fluxio, Produtiv, Extoq e Conciliar                      |
+| **1 Portal central**        | Identidade, acesso, usuários, organizações e assinaturas |
+| **Arquitetura extensível**  | Novos produtos podem ser integrados ao ecossistema       |
+| **Frontends independentes** | Cada produto possui sua própria aplicação                |
+| **Backends independentes**  | Cada produto possui sua própria API                      |
+| **Bancos independentes**    | Separação dos dados por domínio                          |
+| **Deploy independente**     | Cada produto pode evoluir e ser publicado separadamente  |
+| **SSO centralizado**        | Uma única identidade para acesso aos produtos            |
+| **Billing integrado**       | Trial, assinaturas individuais e plano completo          |
+| **Cloud**                   | Vercel, AWS Lightsail, Render, MongoDB, S3 e Cloudflare  |
+| **Uso real**                | Plataforma comercial operando em ambiente empresarial    |
 
 ---
 
@@ -39,52 +42,56 @@ Hoje, a SWNexa possui um Portal central e produtos independentes que compartilha
 
 Minha experiência profissional começou em **Infraestrutura de TI**, trabalhando próximo da operação real de empresas.
 
-Nesse contexto, comecei a perceber um padrão interessante:
+Nesse contexto, comecei a perceber uma situação recorrente: mesmo organizações que possuem sistemas de gestão robustos continuam utilizando diversas planilhas e ferramentas paralelas para resolver necessidades específicas do dia a dia.
 
-mesmo empresas que possuem sistemas de gestão robustos continuam utilizando diversas planilhas e ferramentas paralelas para resolver necessidades específicas do dia a dia.
+Ao mesmo tempo, empresas menores nem sempre precisam de um sistema grande que tente atender todos os processos possíveis.
 
-Ao mesmo tempo, empresas menores nem sempre precisam de um sistema gigantesco.
+Muitas vezes a necessidade é muito mais específica:
 
-Muitas vezes precisam apenas de algo específico:
-
-* controle de estoque;
-* acompanhamento de produtividade;
-* organização de processos;
-* agendamento;
-* conciliação;
-* alguma outra necessidade operacional particular.
+* controlar estoque;
+* acompanhar produção e produtividade;
+* organizar processos;
+* gerenciar agendas;
+* realizar conciliações;
+* resolver alguma demanda operacional particular.
 
 A ideia da SWNexa nasceu justamente desse espaço.
 
 > **Entre planilhas improvisadas e sistemas maiores do que a necessidade real do negócio.**
 
-A proposta não é construir um ERP que tente fazer tudo.
+A proposta não é construir um ERP completo.
 
-A proposta é permitir que uma empresa utilize apenas as soluções de que realmente precisa.
+A ideia é permitir que cada empresa utilize apenas as soluções que façam sentido para sua operação, mantendo essas soluções integradas dentro de uma mesma plataforma.
 
 ---
 
-# Do primeiro problema ao primeiro produto
+# Do primeiro problema à plataforma
 
-A primeira oportunidade real apareceu quando uma pequena empresa buscava substituir uma plataforma externa utilizada para gerenciamento de processos.
+A primeira oportunidade real surgiu quando uma pequena empresa buscava substituir uma plataforma externa utilizada para gerenciamento de processos.
 
-O objetivo era ter uma solução mais adequada à operação daquela empresa e, ao mesmo tempo, reduzir o custo recorrente da ferramenta utilizada anteriormente.
+O objetivo era desenvolver uma solução mais adequada à operação daquela empresa e, ao mesmo tempo, reduzir o custo recorrente da ferramenta utilizada anteriormente.
 
 Foi assim que nasceu o **Fluxio**, primeiro produto da SWNexa.
 
-O que inicialmente poderia ter sido apenas um sistema isolado acabou se tornando o ponto de partida para uma arquitetura maior.
+O sistema foi colocado em produção, começou a ser utilizado em ambiente empresarial e se tornou o primeiro produto comercial do projeto.
 
-O Fluxio foi colocado em produção, passou a ser utilizado em ambiente real e se tornou o primeiro produto comercial da plataforma.
+A receita da primeira assinatura ajudou a financiar a continuidade do desenvolvimento.
 
-A receita dessa primeira assinatura ajudou a financiar a evolução do projeto e o desenvolvimento dos demais produtos.
+Nesse momento surgiu uma decisão arquitetural importante.
 
-A partir daí surgiu uma pergunta importante:
+Se novas necessidades fossem transformadas em novos softwares, não faria sentido reconstruir em cada aplicação:
 
-> Se outras necessidades empresariais também seriam transformadas em software, fazia sentido reconstruir autenticação, usuários, permissões, cobrança e gerenciamento de conta em cada sistema?
+* autenticação;
+* usuários;
+* organizações;
+* permissões;
+* controle de acesso;
+* assinaturas;
+* cobrança.
 
-Minha resposta foi não.
+Foi dessa necessidade que surgiu o **Portal Nexa**.
 
-Foi dessa decisão que nasceu o **Portal Nexa** e, posteriormente, a arquitetura atual da SWNexa.
+Em vez de criar vários sistemas completamente isolados, passei a estruturar uma plataforma na qual responsabilidades comuns ficam centralizadas e cada produto continua independente em seu próprio domínio.
 
 ---
 
@@ -92,12 +99,13 @@ Foi dessa decisão que nasceu o **Portal Nexa** e, posteriormente, a arquitetura
 
 A SWNexa é atualmente projetada, desenvolvida e operada por **um único desenvolvedor**.
 
-Minha responsabilidade inclui todo o ciclo do produto:
+Sou responsável por todo o ciclo técnico e boa parte do ciclo de produto:
 
-* conversa com usuários;
+* contato com usuários;
 * levantamento de necessidades;
-* transformação de problemas operacionais em funcionalidades;
-* definição de arquitetura;
+* análise de processos;
+* definição de funcionalidades;
+* decisões arquiteturais;
 * modelagem de dados;
 * desenvolvimento frontend;
 * desenvolvimento backend;
@@ -113,134 +121,201 @@ Minha responsabilidade inclui todo o ciclo do produto:
 * suporte técnico;
 * evolução baseada em feedback de uso real.
 
-Isso me colocou na posição de tomar decisões que normalmente estariam distribuídas entre diferentes áreas de uma equipe:
+Isso me colocou em uma posição em que decisões normalmente distribuídas entre várias áreas precisam ser consideradas em conjunto:
 
 ```text
-Produto
-   │
-   ├── UX / Frontend
-   ├── Backend
-   ├── Dados
-   ├── Segurança
-   ├── Infraestrutura
-   └── Operação
+Problema de negócio
+        │
+        ▼
+     Produto
+        │
+   ┌────┼──────────────┐
+   │    │              │
+Frontend Backend      Dados
+   │    │              │
+   └────┼──────────────┘
+        │
+   Segurança
+        │
+ Infraestrutura
+        │
+    Operação
 ```
 
-Para mim, essa visão ponta a ponta acabou se tornando uma das partes mais valiosas do projeto.
+Não basta implementar uma funcionalidade.
 
-Não basta fazer uma tela funcionar.
-
-Eu também preciso pensar em:
+Também preciso considerar:
 
 * como ela será utilizada;
-* como os dados serão modelados;
+* como os dados serão representados;
 * como a API será exposta;
-* quem pode executar determinada operação;
-* como aquilo será publicado;
-* como será monitorado;
-* como investigar um erro;
-* como atualizar sem afetar os outros produtos;
-* e como manter tudo isso funcionando em produção.
+* quem pode executar cada operação;
+* como o produto se integra ao Portal;
+* como a aplicação será publicada;
+* como identificar problemas em produção;
+* como atualizar um produto sem afetar os demais;
+* como manter toda a plataforma operacional.
+
+Essa visão ponta a ponta se tornou uma das partes mais importantes da experiência adquirida com o projeto.
 
 ---
 
 # Arquitetura da plataforma
 
-A SWNexa utiliza uma arquitetura modular.
+A SWNexa segue uma arquitetura modular baseada em duas ideias principais:
 
-O **Portal Nexa** funciona como núcleo da plataforma e concentra responsabilidades compartilhadas entre os produtos.
+1. **capacidades compartilhadas ficam centralizadas no Portal;**
+2. **regras de negócio permanecem dentro de produtos independentes.**
 
 ```mermaid
 flowchart TD
-    U[Usuário]
+    U[Usuário] --> P[Portal Nexa]
 
-    U --> P[Portal Nexa]
+    P --> I[Identidade]
+    P --> A[Autorização]
+    P --> O[Organizações]
+    P --> B[Billing e assinaturas]
 
-    P --> ID[Identidade]
-    P --> AU[Autorização]
-    P --> B[Billing]
+    I --> PRODUCTS[Produtos]
+    A --> PRODUCTS
+    O --> PRODUCTS
+    B --> PRODUCTS
 
-    ID --> F[Fluxio]
-    ID --> PR[Produtiv]
-    ID --> E[Extoq]
-    ID --> C[Conciliar]
-
-    AU --> F
-    AU --> PR
-    AU --> E
-    AU --> C
+    PRODUCTS --> F[Fluxio]
+    PRODUCTS --> PR[Produtiv]
+    PRODUCTS --> E[Extoq]
+    PRODUCTS --> C[Conciliar]
+    PRODUCTS -.-> N[Novos produtos]
 ```
 
-O Portal é responsável por elementos como:
+O **Portal Nexa** atua como núcleo das capacidades compartilhadas.
+
+Entre suas responsabilidades estão:
 
 * cadastro;
 * autenticação;
 * usuários;
 * organizações;
 * permissões;
-* assinatura;
+* trial;
+* assinaturas;
 * catálogo de produtos;
-* controle de acesso.
+* billing;
+* autorização de acesso;
+* integração entre identidade e produtos.
 
-Os produtos continuam responsáveis exclusivamente pelas regras relacionadas aos seus próprios domínios.
+Cada produto continua responsável pelas regras específicas do seu domínio.
 
 ---
 
-## Por que não colocar tudo em uma aplicação?
+## Produtos independentes
 
-Uma das decisões arquiteturais mais importantes foi manter os produtos **operacionalmente independentes**.
+Uma das principais decisões arquiteturais foi evitar que a SWNexa se tornasse uma única aplicação contendo todas as regras de todos os produtos.
 
-Cada produto possui:
+Cada produto possui sua própria estrutura:
 
 ```text
 Produto
-├── Frontend próprio
-├── Backend próprio
-├── Banco próprio
-└── Deploy próprio
+├── Frontend
+├── Backend
+├── Banco de dados
+└── Deploy
 ```
+
+Os quatro produtos atuais estão no mesmo nível arquitetural e não dependem diretamente uns dos outros:
+
+```text
+                           Portal Nexa
+                                │
+                 Identidade / Acesso / Billing
+                                │
+        ┌──────────┬────────────┼────────────┬──────────┐
+        │          │            │            │          │
+     Fluxio     Produtiv      Extoq      Conciliar   ...
+        │          │            │            │
+    Frontend    Frontend     Frontend     Frontend
+    Backend     Backend      Backend      Backend
+    Database    Database     Database     Database
+    Deploy      Deploy       Deploy       Deploy
+```
+
+Uma alteração no Extoq, por exemplo, não exige que Fluxio, Produtiv ou Conciliar sejam publicados novamente.
+
+Cada produto pode:
+
+* evoluir em ritmo próprio;
+* possuir regras específicas;
+* receber deploy independentemente;
+* organizar seu próprio domínio de dados;
+* ser mantido sem dependência direta dos demais produtos.
+
+---
+
+## Crescimento da plataforma
+
+Os quatro produtos existentes hoje **não representam um limite da arquitetura**.
+
+O Portal foi desenvolvido como uma camada central de capacidades compartilhadas.
+
+Isso permite que um novo produto seja incorporado ao ecossistema utilizando elementos já existentes, como:
+
+```text
+Novo produto
+     │
+     ├── identidade
+     ├── organização
+     ├── autorização
+     ├── entitlement
+     └── billing
+          │
+          ▼
+      Portal Nexa
+```
+
+Ao mesmo tempo, esse novo produto pode manter:
+
+* frontend próprio;
+* backend próprio;
+* banco próprio;
+* regras de domínio próprias;
+* deploy próprio.
 
 Conceitualmente:
 
 ```text
-                        Portal Nexa
-                             │
-              Identidade / Acesso / Billing
-                             │
-          ┌──────────────────┼──────────────────┐
-          │                  │                  │
-       Fluxio             Produtiv            Extoq
-          │                  │                  │
-      Frontend           Frontend           Frontend
-      Backend            Backend            Backend
-      Database           Database           Database
-      Deploy             Deploy             Deploy
-
-                             │
-                         Conciliar
-                             │
-                         Frontend
-                         Backend
-                         Database
-                         Deploy
+                         SWNexa Platform
+                               │
+                         Portal Nexa
+                               │
+              ┌────────────────┴────────────────┐
+              │                                 │
+     Capacidades compartilhadas         Produtos independentes
+              │                                 │
+       ├── Identidade                  ├── Fluxio
+       ├── Autorização                 ├── Produtiv
+       ├── Organizações                ├── Extoq
+       ├── Billing                     ├── Conciliar
+       └── Assinaturas                 └── novos produtos...
 ```
 
-Essa separação permite que uma alteração no Extoq, por exemplo, não exija necessariamente uma nova publicação do Fluxio ou do Produtiv.
+A intenção é que adicionar um novo domínio de negócio não exija modificar diretamente os produtos existentes.
 
-Cada produto pode:
-
-* evoluir individualmente;
-* receber deploy separadamente;
-* possuir regras de domínio próprias;
-* organizar seus dados de forma independente.
+Essa separação permite que a SWNexa cresça horizontalmente, adicionando novas soluções ao ecossistema sem concentrar todas as regras de negócio em uma única base de código.
 
 ### Trade-off
 
-Essa escolha também aumenta a responsabilidade operacional.
+Essa independência tem custo.
 
-Em vez de manter uma única aplicação, existem múltiplos frontends, APIs, configurações e processos de deploy.
+Mais produtos significam:
 
-Optei por aceitar essa complexidade em troca de maior independência entre os produtos e de uma arquitetura mais preparada para que cada solução evolua em ritmos diferentes.
+* mais aplicações;
+* mais APIs;
+* mais configurações;
+* mais processos de deploy;
+* mais infraestrutura para manter;
+* maior necessidade de padronização.
+
+Optei por aceitar essa complexidade operacional em troca de menor acoplamento e maior liberdade para que cada produto evolua de maneira independente.
 
 ---
 
@@ -248,7 +323,7 @@ Optei por aceitar essa complexidade em troca de maior independência entre os pr
 
 O usuário possui **uma única identidade na SWNexa**.
 
-Ele não cria uma conta separada para cada produto.
+Não é necessário criar uma conta separada em cada produto.
 
 ```text
 Usuário
@@ -259,27 +334,30 @@ Portal Nexa
    ├── autenticação
    ├── organização
    ├── assinatura
+   ├── permissões
    └── produtos autorizados
            │
            ▼
         Produto
 ```
 
-Depois de autenticado no Portal, o usuário consegue abrir um produto autorizado sem realizar um novo login manual.
+Depois de autenticado no Portal, o usuário consegue acessar os produtos aos quais possui direito sem realizar um novo login manual.
 
-O Portal funciona como autoridade central para determinar se aquela conta possui acesso ao produto solicitado.
+O Portal funciona como autoridade central para determinar se aquela conta está autorizada a utilizar o produto solicitado.
 
-Se alguém tentar acessar diretamente a URL de um produto sem uma sessão ou autorização válida, o fluxo retorna para o Portal.
+Caso alguém tente acessar diretamente um produto sem possuir uma sessão ou autorização válida, o fluxo retorna para o Portal.
 
-Isso permite que os produtos permaneçam independentes sem obrigar o usuário a lidar com múltiplas credenciais e múltiplos logins.
+Os produtos permanecem independentes, mas a experiência de identidade é única para o usuário.
 
-Os detalhes internos desse fluxo não são publicados neste repositório, mas a arquitetura utiliza um processo controlado de **SSO entre Portal e produtos**.
+A comunicação de autenticação entre Portal e produtos utiliza um fluxo controlado de **SSO**.
+
+Detalhes sensíveis de implementação não fazem parte desta documentação pública.
 
 ---
 
 # Trial, assinatura e entitlement
 
-O acesso aos produtos também faz parte da arquitetura de autorização.
+O direito de acesso aos produtos também faz parte da arquitetura de autorização.
 
 Uma nova conta recebe atualmente **14 dias corridos de acesso a todos os produtos da plataforma**.
 
@@ -290,128 +368,127 @@ Cadastro
 14 dias de trial
    │
    ▼
-Todos os produtos liberados
+Todos os produtos disponíveis
    │
    ▼
-Fim do período
+Fim do trial
    │
-   ├── sem assinatura
+   ├── Sem assinatura
    │       │
    │       ▼
-   │    acesso bloqueado
+   │   Acesso bloqueado
    │
-   └── assinatura ativa
+   └── Assinatura ativa
            │
            ▼
-      produtos do plano
+      Produtos do plano
 ```
 
-Após o trial, é necessário escolher uma assinatura.
+Após esse período, a conta precisa possuir uma assinatura compatível.
 
-Existem duas possibilidades principais:
+Atualmente existem duas formas principais de acesso:
 
-* contratação de produtos individuais;
+* assinatura de produtos individuais;
 * plano com acesso ao conjunto da plataforma.
 
 O gerenciamento financeiro é integrado ao **Stripe**.
 
-O próprio usuário consegue administrar sua assinatura pelo Portal, incluindo operações como gerenciamento do plano, cancelamento e renovação.
+O usuário pode gerenciar sua assinatura diretamente pelo Portal, incluindo ações relacionadas ao plano, cancelamento e renovação.
 
-Isso faz com que billing e autorização estejam relacionados:
+Isso conecta billing diretamente ao modelo de autorização.
 
-> não basta um usuário existir; a plataforma também precisa determinar a quais produtos aquela conta possui direito de acesso naquele momento.
+A plataforma não precisa apenas saber:
 
----
+> Quem é este usuário?
 
-# Produtos
+Ela também precisa responder:
 
-## Portal Nexa
+> A qual organização ele pertence?
 
-O Portal é o ponto central da plataforma.
+> Quais permissões possui?
 
-Entre suas responsabilidades estão:
+> Quais produtos essa conta pode utilizar neste momento?
 
-* autenticação;
-* gerenciamento de conta;
-* organizações;
-* usuários e membros;
-* permissões;
-* produtos disponíveis;
-* trial;
-* assinaturas;
-* integração de pagamentos;
-* autorização de acesso aos produtos;
-* SSO.
+Esse conceito de **entitlement** é uma das responsabilidades centrais do Portal.
 
 ---
 
-## Fluxio
+# Produtos atuais
 
-O **Fluxio** foi o primeiro produto desenvolvido e o ponto de partida comercial da SWNexa.
+Hoje, quatro produtos estão integrados à plataforma:
 
-É uma solução voltada à organização e acompanhamento de fluxos e processos empresariais.
+| Produto       | Domínio                                 |
+| ------------- | --------------------------------------- |
+| **Fluxio**    | Fluxos e processos empresariais         |
+| **Produtiv**  | Produção, produtividade, vendas e metas |
+| **Extoq**     | Estoque e inventário                    |
+| **Conciliar** | Conciliação financeira e bancária       |
 
-Ele surgiu diretamente de uma necessidade de uso real e foi o primeiro produto colocado em produção.
+O README principal não pretende documentar em profundidade as regras e funcionalidades de cada produto.
 
-> Mais detalhes públicos do produto serão adicionados conforme a documentação do portfólio evoluir.
+Cada solução possui contexto, decisões técnicas e evolução próprios, que serão documentados separadamente.
+
+A estrutura prevista para essa documentação é:
+
+```text
+docs/
+└── products/
+    ├── portal-nexa.md
+    ├── fluxio.md
+    ├── produtiv.md
+    ├── extoq.md
+    └── conciliar.md
+```
+
+Esses documentos poderão reunir informações como:
+
+* problema que originou o produto;
+* principais funcionalidades;
+* arquitetura específica;
+* decisões técnicas;
+* desafios encontrados;
+* screenshots;
+* resultados observados em uso real.
+
+O README principal permanece focado na **plataforma SWNexa como sistema e projeto de engenharia**.
 
 ---
 
-## Produtiv
+# Case real: Produtiv
 
-O **Produtiv** é voltado ao acompanhamento de produtividade, produção, vendas e metas.
+Um dos resultados mais claros observados até agora está relacionado ao **Produtiv**.
 
-Uma parte importante do seu desenvolvimento foi transformar processos operacionais que anteriormente exigiam muito trabalho manual em uma experiência mais rápida de lançamento e acompanhamento das informações.
+Antes da implantação, um processo operacional de preenchimento e consolidação de informações exigia aproximadamente:
 
-### Resultado observado em produção
+| Antes                                                                      | Com o Produtiv                                                       |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Um dia inteiro de trabalho para processar aproximadamente um dia da agenda | Uma semana da agenda pode ser processada em aproximadamente 1–2 dias |
 
-Em um dos processos para os quais o Produtiv é utilizado:
+O ganho veio principalmente da redução de tarefas manuais e da possibilidade de inserir e organizar informações em lote.
 
-| Antes                                                                            | Com o Produtiv                                                       |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Aproximadamente um dia inteiro de trabalho para processar um único dia da agenda | Aproximadamente uma semana da agenda pode ser processada em 1–2 dias |
-
-Além da redução no trabalho de lançamento, as informações passam a ficar disponíveis de forma estruturada para acompanhamento de produção e vendas.
+Além da velocidade de lançamento, os dados passam a ficar estruturados para acompanhamento posterior de produção e vendas.
 
 *Resultado observado nesse processo específico durante o uso real da plataforma.*
 
 ---
 
-## Extoq
-
-O **Extoq** é a solução da plataforma direcionada a estoque e inventário.
-
-O produto trabalha com informações relacionadas ao acompanhamento de itens, quantidades e necessidades de reposição.
-
-Sua arquitetura segue o mesmo princípio dos demais produtos: aplicação, backend, banco e deploy independentes, integrados ao Portal central.
-
----
-
-## Conciliar
-
-O **Conciliar** é voltado à conciliação financeira e bancária.
-
-O produto está sendo desenvolvido para organizar lançamentos e facilitar o processo de comparação e conciliação de movimentações financeiras.
-
-Assim como os demais sistemas da SWNexa, ele é tratado como um produto independente dentro do mesmo ecossistema.
-
----
-
 # Impacto além do código
 
-Uma das empresas que utiliza a SWNexa anteriormente dependia de diferentes plataformas para atender necessidades separadas.
+Outro efeito observado em uso real foi a redução da dependência de múltiplas ferramentas externas.
 
-Ao reunir parte dessas demandas dentro da SWNexa, foi possível reduzir a dependência de múltiplas assinaturas e diminuir custos recorrentes com ferramentas externas.
+Parte das necessidades que anteriormente exigiam plataformas e assinaturas diferentes passou a ser atendida dentro da SWNexa.
 
-Para mim, esse tipo de resultado é particularmente importante porque demonstra algo que um projeto de estudo normalmente não consegue reproduzir:
+Isso ajudou a reduzir custos recorrentes e simplificar a experiência dos usuários ao centralizar diferentes necessidades em uma única identidade.
 
-> o software precisa resolver um problema suficientemente bem para que alguém realmente escolha utilizá-lo no trabalho.
+Para mim, esse tipo de resultado é especialmente importante porque diferencia a SWNexa de um projeto construído apenas como exercício técnico.
+
+O software precisa resolver um problema suficientemente bem para que alguém realmente escolha utilizá-lo no trabalho.
 
 ---
 
 # Infraestrutura
 
-A infraestrutura atual combina serviços gerenciados com servidores sob administração própria.
+A infraestrutura combina serviços gerenciados com componentes administrados diretamente.
 
 ```mermaid
 flowchart TD
@@ -424,55 +501,58 @@ flowchart TD
 
     API --> DB[MongoDB]
     API --> S3[Amazon S3]
-    API --> STRIPE[Stripe]
-    API --> RESEND[Resend]
+    API --> ST[Stripe]
+    API --> RE[Resend]
 
     R[Render<br/>Infraestrutura secundária]
 ```
 
-### Frontend
+## Frontend
 
-Os frontends são publicados através da **Vercel**.
+Os frontends são publicados pela **Vercel**.
 
-### Backend
+Cada produto possui aplicação e deploy próprios.
 
-Os backends principais são executados em **AWS Lightsail**, utilizando servidores **Ubuntu**.
+## Backend
 
-A administração da aplicação envolve também componentes como:
+Os backends principais são executados em **AWS Lightsail**, utilizando **Ubuntu**.
+
+A operação envolve componentes e conhecimentos como:
 
 * Linux;
 * Nginx;
 * gerenciamento de processos;
-* configuração de variáveis de ambiente;
+* variáveis de ambiente;
+* reverse proxy;
 * deploy;
 * health checks;
 * troubleshooting.
 
-Existe também infraestrutura secundária no **Render**, utilizada como alternativa operacional para os backends.
+Existe também infraestrutura secundária no **Render**, mantida como alternativa operacional para os backends.
 
-Ela não é descrita aqui como failover automático, já que essa documentação evita atribuir automações que não façam parte do comportamento confirmado da arquitetura.
+Ela não é tratada nesta documentação como failover automático.
 
-### Dados
+## Dados
 
-Os dados são armazenados no **MongoDB**.
+A plataforma utiliza **MongoDB**.
 
-Cada produto possui sua própria separação lógica de dados, evitando que as regras de domínio de diferentes sistemas fiquem excessivamente acopladas.
+Portal e produtos possuem separação lógica de dados de acordo com seus respectivos domínios.
 
-### Arquivos
+## Arquivos
 
 O **Amazon S3** é utilizado para armazenamento de arquivos.
 
-### E-mail
+## E-mail
 
-O **Resend** é utilizado para e-mails transacionais da plataforma.
+O **Resend** é utilizado para e-mails transacionais.
 
-### Pagamentos
+## Pagamentos
 
-O **Stripe** é responsável pela camada de pagamentos e gerenciamento das assinaturas.
+O **Stripe** é utilizado para pagamentos e gerenciamento de assinaturas.
 
-### Domínio e edge
+## Domínio e edge
 
-O domínio e componentes relacionados ao tráfego público utilizam **Cloudflare**.
+O **Cloudflare** participa da camada pública de domínio e tráfego da plataforma.
 
 ---
 
@@ -482,12 +562,12 @@ O domínio e componentes relacionados ao tráfego público utilizam **Cloudflare
 | ------------------------- | ------------------------------ |
 | Frontend                  | React, TypeScript              |
 | Backend                   | Node.js, TypeScript, APIs REST |
-| Banco                     | MongoDB                        |
-| Frontend Hosting          | Vercel                         |
-| Backend Infrastructure    | AWS Lightsail, Ubuntu          |
+| Banco de dados            | MongoDB                        |
+| Frontend hosting          | Vercel                         |
+| Backend infrastructure    | AWS Lightsail, Ubuntu          |
 | Infraestrutura secundária | Render                         |
-| Reverse Proxy             | Nginx                          |
-| Object Storage            | Amazon S3                      |
+| Reverse proxy             | Nginx                          |
+| Object storage            | Amazon S3                      |
 | E-mail transacional       | Resend                         |
 | Pagamentos                | Stripe                         |
 | DNS / Edge                | Cloudflare                     |
@@ -497,85 +577,93 @@ O domínio e componentes relacionados ao tráfego público utilizam **Cloudflare
 
 # Segurança e backend
 
-Uma parte importante da evolução da SWNexa tem sido deixar de tratar segurança e observabilidade como detalhes adicionados depois da funcionalidade.
+À medida que a plataforma passou a operar em produção, segurança, previsibilidade das APIs e observabilidade deixaram de ser apenas preocupações futuras e passaram a fazer parte da evolução da arquitetura.
 
-Entre os pontos trabalhados na arquitetura estão:
+Entre os pontos trabalhados estão:
 
 * cookies `HttpOnly`;
 * proteção CSRF;
 * políticas de CORS;
 * autenticação centralizada;
-* autorização por usuário/organização/produto;
+* autorização por usuário, organização e produto;
 * RBAC onde aplicável;
 * validação de entrada;
 * tratamento centralizado de erros;
 * respostas HTTP consistentes;
 * request IDs;
 * logging estruturado;
-* proteção de informações sensíveis;
-* separação entre erros internos e respostas públicas da API.
+* sanitização de informações sensíveis;
+* separação entre erros internos e respostas públicas.
 
-Os detalhes de implementação que poderiam revelar informações operacionais ou de segurança não fazem parte deste repositório público.
+O objetivo não é apenas impedir acesso indevido.
+
+Também é tornar os diferentes backends mais previsíveis para desenvolver, operar e investigar.
+
+Detalhes que poderiam revelar informações operacionais sensíveis não fazem parte deste repositório.
 
 ---
 
 # Evolução da arquitetura
 
-A arquitetura atual não foi desenhada inteira antes da primeira linha de código.
+A arquitetura atual não foi definida completamente antes da primeira versão.
 
-Ela evoluiu conforme o projeto encontrou problemas reais.
+Ela evoluiu conforme o projeto passou por problemas reais de desenvolvimento e produção.
 
-E considero isso uma das partes mais importantes da experiência adquirida construindo a SWNexa.
+Essa evolução é uma das partes que considero mais relevantes da experiência adquirida com a SWNexa.
+
+---
 
 ## Autenticação
 
-As primeiras versões utilizavam uma abordagem mais simples de autenticação.
+As primeiras versões utilizavam uma abordagem mais simples.
 
-Com a evolução da plataforma e o surgimento de múltiplos produtos, ficou claro que identidade e autorização precisavam deixar de ser preocupações isoladas de cada aplicação.
+Com o surgimento de vários produtos, ficou claro que identidade e autorização não deveriam ser implementadas isoladamente em cada aplicação.
 
-Isso levou à evolução para:
+A arquitetura passou a evoluir em direção a:
 
 * Portal como autoridade central;
 * sessões mais seguras;
-* controle centralizado de acesso;
-* fluxo de SSO;
-* separação entre autenticação e autorização de produtos.
+* SSO;
+* autorização centralizada;
+* separação entre autenticação e entitlement;
+* sessões próprias dos produtos quando necessário.
+
+Essa mudança surgiu da evolução real da plataforma, e não apenas de uma decisão teórica de arquitetura.
 
 ---
 
 ## Infraestrutura
 
-A infraestrutura também mudou.
+A infraestrutura também mudou ao longo do projeto.
 
-Decisões relacionadas à localização dos serviços, latência entre aplicação e banco, gerenciamento dos processos e publicação dos backends precisaram ser revistas à medida que o projeto deixou de ser apenas desenvolvimento local e passou a operar continuamente.
+Localização dos serviços, latência entre aplicações e banco de dados, gerenciamento de processos e estratégia de publicação dos backends precisaram ser revistos conforme a SWNexa passou a operar continuamente.
 
-Minha experiência anterior com infraestrutura foi especialmente útil aqui.
+Minha experiência anterior com infraestrutura foi especialmente útil nessa etapa.
 
-Problemas envolvendo:
+Conceitos com os quais eu já trabalhava passaram a fazer parte direta da engenharia das aplicações:
 
 * Linux;
 * DNS;
 * HTTP;
-* reverse proxy;
 * TLS;
+* reverse proxy;
 * processos;
 * rede;
 * cloud;
 * disponibilidade;
-
-deixaram de ser apenas conceitos e passaram a fazer parte da operação diária da aplicação.
+* troubleshooting.
 
 ---
 
-## Padronização de backend
+## Padronização dos backends
 
-Com vários produtos independentes, outro problema começou a aparecer:
+Quando existem vários produtos independentes, surge outro problema:
 
-> como impedir que cada backend evolua para padrões completamente diferentes?
+> Como impedir que cada backend evolua para padrões completamente diferentes?
 
 Por isso, uma das frentes atuais de engenharia é aumentar a consistência entre as APIs.
 
-Isso envolve padrões para:
+Isso envolve padronização de:
 
 * validação;
 * tratamento de erros;
@@ -586,57 +674,69 @@ Isso envolve padrões para:
 * request IDs;
 * health checks;
 * configuração;
-* estrutura de aplicação.
+* estrutura geral das aplicações.
 
-O objetivo não é transformar todos os produtos no mesmo sistema, mas criar uma base previsível para manter diferentes aplicações ao longo do tempo.
+A intenção não é fazer todos os produtos compartilharem a mesma regra de negócio.
+
+É criar uma base técnica mais previsível para desenvolver e manter múltiplas aplicações.
 
 ---
 
-# Algumas decisões e seus trade-offs
+# Decisões e trade-offs
 
 ## Portal central
 
-**Decisão:** centralizar identidade, acesso e billing.
+**Decisão:** concentrar identidade, acesso, organizações, entitlement e billing.
 
-**Benefício:** uma única conta, gerenciamento centralizado e menos duplicação entre produtos.
+**Benefício:** evita duplicação dessas responsabilidades entre os produtos e cria uma experiência única para o usuário.
 
-**Custo:** o Portal passa a ser uma parte crítica da arquitetura e precisa manter contratos claros com diferentes aplicações.
+**Custo:** o Portal se torna um componente crítico e precisa manter contratos confiáveis com diferentes aplicações.
 
 ---
 
 ## Backend por produto
 
-**Decisão:** cada produto possui backend próprio.
+**Decisão:** cada produto possui API própria.
 
-**Benefício:** independência de domínio, evolução e deploy.
+**Benefício:** independência de domínio, desenvolvimento e deploy.
 
-**Custo:** mais aplicações para configurar, atualizar, observar e manter.
-
----
-
-## Banco separado por produto
-
-**Decisão:** separar os dados de cada domínio.
-
-**Benefício:** menor acoplamento entre sistemas e maior clareza sobre propriedade dos dados.
-
-**Custo:** operações que atravessam diferentes domínios precisam ser planejadas com mais cuidado.
+**Custo:** aumenta o número de aplicações que precisam ser configuradas, atualizadas e observadas.
 
 ---
 
-## Cloud sem abstrair a operação
+## Banco separado por domínio
 
-**Decisão:** utilizar serviços gerenciados onde fazem sentido, mas manter controle direto sobre parte da infraestrutura dos backends.
+**Decisão:** produtos mantêm seus dados separados.
 
-**Benefício:** maior contato com a operação real e maior capacidade de diagnosticar problemas de infraestrutura.
+**Benefício:** reduz acoplamento e torna mais clara a responsabilidade de cada domínio.
 
-**Custo:** manutenção de servidores, processos, configurações e deploy também passam a fazer parte da responsabilidade do projeto.
+**Custo:** operações que precisem atravessar diferentes produtos exigem maior cuidado arquitetural.
+
+---
+
+## Arquitetura extensível
+
+**Decisão:** novos produtos se integram às capacidades centrais em vez de serem incorporados diretamente aos produtos existentes.
+
+**Benefício:** a plataforma pode crescer adicionando novos domínios sem aumentar diretamente o acoplamento entre os sistemas atuais.
+
+**Custo:** contratos de autenticação, autorização e integração precisam permanecer consistentes ao longo da evolução da plataforma.
+
+---
+
+## Infraestrutura com controle operacional
+
+**Decisão:** utilizar serviços gerenciados onde fazem sentido, mantendo controle direto sobre parte da infraestrutura dos backends.
+
+**Benefício:** maior flexibilidade operacional e capacidade de diagnosticar problemas.
+
+**Custo:** servidores, processos, configurações e deploy também passam a fazer parte das responsabilidades de manutenção.
 
 ---
 
 # Desenvolvimento orientado pelo uso real
 
-As funcionalidades não são definidas apenas a partir da minha própria percepção.
+As funcionalidades da SWNexa não são definidas apenas a partir das minhas próprias ideias.
 
 Existe contato com usuários para entender:
 
@@ -645,99 +745,119 @@ Existe contato com usuários para entender:
 * processos atuais;
 * sugestões;
 * bugs;
-* melhorias.
+* oportunidades de melhoria.
 
-Feedback de suporte também influencia diretamente a evolução dos produtos.
+O suporte também gera informações que retornam para o desenvolvimento.
 
-Esse ciclo é uma das diferenças mais relevantes entre a SWNexa e os projetos que desenvolvi apenas com finalidade de estudo:
+O ciclo acaba funcionando aproximadamente assim:
 
 ```text
 Problema real
-    ↓
+     │
+     ▼
 Conversa com usuário
-    ↓
+     │
+     ▼
+Entendimento do processo
+     │
+     ▼
 Definição da solução
-    ↓
-Arquitetura
-    ↓
+     │
+     ▼
+Decisão técnica
+     │
+     ▼
 Implementação
-    ↓
+     │
+     ▼
 Deploy
-    ↓
+     │
+     ▼
 Uso real
-    ↓
+     │
+     ▼
 Feedback
-    ↓
-Nova evolução
+     │
+     └──────────────► Nova evolução
 ```
+
+Essa é uma das diferenças mais importantes entre a SWNexa e projetos desenvolvidos apenas com finalidade de estudo.
 
 ---
 
 # Por que este projeto está no meu portfólio?
 
-Minha carreira profissional começou em Infraestrutura de TI, e meu objetivo atual é realizar a transição para **Desenvolvimento de Software**.
+Minha carreira profissional começou em **Infraestrutura de TI**, e meu objetivo atual é realizar a transição para **Desenvolvimento de Software**.
 
 A SWNexa foi a maneira que encontrei de não limitar essa transição a cursos, exercícios e projetos fictícios.
 
-Construindo a plataforma, pude enfrentar problemas relacionados a:
+Construindo e operando a plataforma, tive contato prático com problemas relacionados a:
 
 * frontend;
 * backend;
+* APIs;
 * arquitetura;
-* modelagem;
+* modelagem de dados;
 * autenticação;
+* autorização;
 * segurança;
-* pagamentos;
+* billing;
+* integrações;
 * cloud;
 * infraestrutura;
+* deploy;
 * produção;
 * suporte;
 * manutenção de software.
 
-Ao mesmo tempo, desenvolver um projeto praticamente sozinho também deixa muito claro o que ele **não consegue substituir**.
+Ao mesmo tempo, desenvolver um projeto praticamente sozinho também deixa claro o que uma experiência individual não consegue reproduzir completamente.
 
-Meu objetivo profissional é trabalhar como desenvolvedor dentro de uma equipe de engenharia, participando de experiências que um projeto individual não reproduz completamente:
+Meu objetivo profissional é atuar como desenvolvedor dentro de uma equipe de engenharia, participando de experiências como:
 
 * code review;
 * decisões arquiteturais compartilhadas;
 * desenvolvimento colaborativo;
-* padrões definidos em equipe;
+* manutenção de código em equipe;
+* padrões definidos coletivamente;
 * troca técnica com outros desenvolvedores;
-* manutenção de bases de código maiores;
 * processos profissionais de engenharia de software.
 
 A SWNexa é um projeto independente que desenvolvo e mantenho paralelamente às minhas atividades profissionais.
 
-Ela não representa uma alternativa à minha intenção de construir carreira dentro de uma equipe de desenvolvimento.
+Ela não representa uma alternativa à construção de uma carreira dentro de uma equipe de desenvolvimento.
 
-Pelo contrário: foi justamente construir e operar um produto sozinho que reforçou meu interesse em trabalhar profissionalmente com software ao lado de outros desenvolvedores.
+Pelo contrário: desenvolver um produto de ponta a ponta reforçou meu interesse em trabalhar profissionalmente com software ao lado de outros desenvolvedores.
 
 ---
 
 # O que quero demonstrar com este repositório
 
-O código de produção da SWNexa permanece privado, portanto este repositório não existe para demonstrar minha capacidade através de milhares de linhas de código abertas.
+O código de produção da SWNexa permanece privado.
 
-A proposta é documentar algo que considero mais relevante neste caso:
+Por isso, este repositório não existe para apresentar milhares de linhas de código abertas.
 
-**as decisões que precisei tomar para transformar problemas reais em software funcionando em produção.**
+Ele existe para documentar algo que considero mais representativo deste projeto:
 
-Este repositório documenta:
+> **as decisões necessárias para transformar problemas reais em software funcionando em produção.**
+
+Aqui pretendo documentar progressivamente:
 
 * arquitetura;
 * decisões de engenharia;
 * trade-offs;
 * infraestrutura;
-* evolução técnica;
+* autenticação;
 * segurança;
+* evolução técnica;
 * resultados observados;
-* desafios encontrados durante o desenvolvimento e operação.
+* problemas encontrados;
+* mudanças feitas a partir desses problemas.
 
 ---
 
 # Documentação técnica
 
-A documentação será expandida progressivamente conforme partes da arquitetura forem preparadas para divulgação pública.
+A documentação detalhada fica separada do README principal.
 
 * [Arquitetura](docs/architecture.md)
 * [Autenticação e acesso](docs/authentication.md)
@@ -748,34 +868,44 @@ A documentação será expandida progressivamente conforme partes da arquitetura
 * [Diagramas](diagrams/README.md)
 * [Screenshots](screenshots/README.md)
 
+A documentação específica dos produtos será organizada em:
+
+```text
+docs/products/
+├── portal-nexa.md
+├── fluxio.md
+├── produtiv.md
+├── extoq.md
+└── conciliar.md
+```
+
 ---
 
-# Próximas evoluções públicas
+# Próximas evoluções deste repositório
 
-Algumas áreas que pretendo documentar melhor neste repositório:
-
-* [ ] fluxo arquitetural de autenticação e SSO;
-* [ ] decisões de separação dos backends;
-* [ ] estratégia de padronização das APIs;
+* [ ] documentação individual dos produtos;
+* [ ] screenshots sanitizados das principais interfaces;
+* [ ] diagrama visual completo da arquitetura;
+* [ ] documentação mais detalhada do fluxo de SSO;
+* [ ] histórico de decisões arquiteturais;
 * [ ] evolução da infraestrutura;
+* [ ] estratégia de padronização dos backends;
 * [ ] observabilidade;
-* [ ] CI e validação de deploy;
-* [ ] screenshots sanitizados dos produtos;
-* [ ] diagramas arquiteturais mais completos;
-* [ ] novos resultados observados em produção;
-* [ ] estudos de decisões técnicas e respectivos trade-offs.
+* [ ] CI e validações de deploy;
+* [ ] novos cases de uso real;
+* [ ] documentação da integração de novos produtos à plataforma.
 
 ---
 
 # Código-fonte
 
- **A SWNexa é um software proprietário e closed source.**
+**A SWNexa é um software proprietário e closed source.**
 
 Os repositórios utilizados em produção permanecem privados.
 
-Este repositório contém exclusivamente documentação pública, decisões de engenharia, diagramas e materiais adequados para apresentação profissional.
+Este repositório contém documentação pública, decisões de engenharia, diagramas e materiais preparados especificamente para apresentação profissional.
 
-Nenhuma credencial, configuração operacional sensível, dado de cliente ou implementação privada faz parte deste projeto.
+Credenciais, configurações operacionais sensíveis, dados de clientes e detalhes privados de implementação não fazem parte deste projeto.
 
 ---
 
