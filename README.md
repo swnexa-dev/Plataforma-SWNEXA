@@ -2,13 +2,13 @@
 
 > Soluções empresariais modulares para o espaço entre planilhas improvisadas e sistemas maiores do que a necessidade real do negócio.
 
-[![Plataforma online](https://img.shields.io/badge/Plataforma-online-16a34a)](https://swnexa.com)
+[![Plataforma online](https://img.shields.io/badge/Plataforma-online-16a34a)](https://www.swnexa.com)
 ![Em produção](https://img.shields.io/badge/Ambiente-em%20produ%C3%A7%C3%A3o-2563eb)
 ![Código proprietário](https://img.shields.io/badge/C%C3%B3digo-propriet%C3%A1rio-374151)
 
 **SWNexa** é uma plataforma de soluções empresariais composta por um portal central e produtos especializados. Ela permite que cada empresa adote apenas as ferramentas de que realmente precisa, mantendo uma experiência integrada de identidade, acesso e assinatura.
 
-🌐 [swnexa.com](https://swnexa.com)
+🌐 [swnexa.com](https://www.swnexa.com)
 
 ## O problema
 
